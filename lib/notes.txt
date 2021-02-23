@@ -1,0 +1,3 @@
+Precisa ter uma tela dados do usuário
+
+this.logDateTime = DateTime.parse(map['DATA_HORA']);

@@ -4,7 +4,7 @@ class GoalModel {
   double distanceGoal;
   String startDate;
   String finalDate;
-  int goalAutor;
+  int idHabito;
 
   GoalModel(
       {this.idGoal,
@@ -12,7 +12,7 @@ class GoalModel {
       this.distanceGoal,
       this.startDate,
       this.finalDate,
-      this.goalAutor});
+      this.idHabito});
 
   GoalModel.fromJson(Map<String, dynamic> json) {
     idGoal = json['IdGoal'];
@@ -20,7 +20,7 @@ class GoalModel {
     distanceGoal = json['DistanceGoal'];
     startDate = json['StartDate'];
     finalDate = json['FinalDate'];
-    goalAutor = json['GoalAutor'];
+    idHabito = json['idHabito'];
   }
 
   Map<String, dynamic> toJson() {
@@ -30,7 +30,7 @@ class GoalModel {
     data['DistanceGoal'] = this.distanceGoal;
     data['StartDate'] = this.startDate;
     data['FinalDate'] = this.finalDate;
-    data['GoalAutor'] = this.goalAutor;
+    data['idHabito'] = this.idHabito;
     return data;
   }
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:larafit/data/util/db_helper.dart';
 import 'package:larafit/ui/user_dashboard/user_dashboard.dart';
 
 void main() {
@@ -8,6 +9,8 @@ void main() {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    DbHelper dbHelper = DbHelper();
+    dbHelper.openDb();
     return MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Flutter Demo',

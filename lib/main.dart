@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:larafit/data/util/db_helper.dart';
 import 'package:larafit/ui/user_dashboard/user_dashboard.dart';
 
@@ -11,7 +12,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     DbHelper dbHelper = DbHelper();
     dbHelper.openDb();
-    return MaterialApp(
+    return GetMaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Flutter Demo',
         theme: buildTheme(),
@@ -22,19 +23,19 @@ class MyApp extends StatelessWidget {
 ThemeData buildTheme() {
   return ThemeData.from(
     colorScheme: ColorScheme(
-      primary: Colors.amber[500],
-      primaryVariant: Colors.amber[800],
-      secondary: Color(0xFF03DAC5),
-      secondaryVariant: Color(0xFF005457),
-      surface: Color(0xFF121212),
-      background: Color(0xFF121212), //
-      error: Color(0xFFCF6679),
-      onPrimary: Colors.black,
-      onSecondary: Colors.black,
-      onSurface: Colors.white,
+      primary: Color(0xff92baba),
+      primaryVariant: Color(0xff4c8f8d),
+      secondary: Color(0xffec6e8b),
+      secondaryVariant: Color(0xffe33f5d),
+      surface: Colors.white,
+      background: Colors.white, //
+      error: Color(0xffb00020),
+      onPrimary: Colors.white,
+      onSecondary: Colors.white,
+      onSurface: Colors.black,
       onBackground: Colors.white,
-      onError: Colors.black,
-      brightness: Brightness.dark,
+      onError: Colors.white,
+      brightness: Brightness.light,
     ),
     textTheme: TextTheme(
       headline1: TextStyle(fontWeight: FontWeight.w300, fontSize: 96),
@@ -71,7 +72,10 @@ ThemeData buildTheme() {
         ),
       ),
     ),
-    appBarTheme:
-        AppBarTheme(color: Colors.transparent, elevation: 0, centerTitle: true),
+    appBarTheme: AppBarTheme(
+      elevation: 5,
+      centerTitle: true,
+      // brightness: Brightness.dark,
+    ),
   );
 }

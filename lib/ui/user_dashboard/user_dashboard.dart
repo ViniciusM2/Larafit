@@ -8,7 +8,10 @@ class UserDashboardPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text('Sua saúde'),
+        title: Text(
+          'Oii, Vini',
+          style: TextStyle(color: Colors.white),
+        ),
       ),
       body: Padding(
         padding: const EdgeInsets.all(6.0),
@@ -35,6 +38,10 @@ class UserDashboardPage extends StatelessWidget {
             MyWeight(),
           ],
         ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {},
+        child: Icon(Icons.fitness_center),
       ),
     );
   }

@@ -1,21 +1,27 @@
+import 'package:larafit/data/model/goal_model.dart';
+
 class GoalProvider {
-  getAllGoals() async {
+  Future<List<GoalModel>> getAllGoals() async {
     try {} catch (_) {}
   }
 
-  getGoalById() {
+  Future<GoalModel> getGoalById() {
     try {} catch (_) {}
   }
 
-  deleteGoalById() {
+  Future<GoalModel> deleteGoalById() {
     try {} catch (_) {}
   }
 
-  updateGoalById() {
+  Future<GoalModel> updateGoalById() {
     try {} catch (_) {}
   }
 
-  countGoals() {
-    try {} catch (_) {}
+  Future<int> countGoals() {
+    return Future.delayed(Duration(milliseconds: 500)).then((value) => 9);
+  }
+
+  Future<int> countSuccessfulGoals() {
+    return Future.delayed(Duration(milliseconds: 500)).then((value) => 8);
   }
 }

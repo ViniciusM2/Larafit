@@ -1,21 +1,23 @@
+import 'package:larafit/data/model/healthy_habit_model.dart';
+
 class HealthyHabitProvider {
-  getAllHealthyHabits() async {
+  Future<List<HealthyHabitModel>> getAllHealthyHabits() async {
     try {} catch (_) {}
   }
 
-  getHealthyHabitById() {
+  Future<HealthyHabitModel> getHealthyHabitById() {
     try {} catch (_) {}
   }
 
-  deleteHealthyHabitById() {
+  Future<HealthyHabitModel> deleteHealthyHabitById() {
     try {} catch (_) {}
   }
 
-  updateHealthyHabitById() {
+  Future<HealthyHabitModel> updateHealthyHabitById() {
     try {} catch (_) {}
   }
 
-  countHealthyHabits() {
+  Future<int> countHealthyHabits() {
     try {} catch (_) {}
   }
 }

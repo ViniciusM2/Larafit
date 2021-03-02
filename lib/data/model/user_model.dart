@@ -5,14 +5,17 @@ class UserModel {
   String sex;
   double weight;
   double height;
+  int age;
 
-  UserModel(
-      {this.idUser,
-      this.nameUser,
-      this.bornDate,
-      this.sex,
-      this.weight,
-      this.height});
+  UserModel({
+    this.idUser,
+    this.nameUser,
+    this.bornDate,
+    this.sex,
+    this.weight,
+    this.height,
+    this.age,
+  });
 
   UserModel.fromJson(Map<String, dynamic> json) {
     idUser = json['IdUser'];

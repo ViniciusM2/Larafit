@@ -1,21 +1,23 @@
+import 'package:larafit/data/model/atitude_model.dart';
+
 class AtitudeProvider {
-  getAllAtitudes() async {
+  Future<List<AtitudeModel>> getAllAtitudes() async {
     try {} catch (_) {}
   }
 
-  getAtitudeById() {
+  Future<AtitudeModel> getAtitudeById() {
     try {} catch (_) {}
   }
 
-  deleteAtitudeById() {
+  Future<AtitudeModel> deleteAtitudeById() {
     try {} catch (_) {}
   }
 
-  updateAtitudeById() {
+  Future<AtitudeModel> updateAtitudeById() {
     try {} catch (_) {}
   }
 
-  countAtitudes() {
-    try {} catch (_) {}
+  Future<int> countAtitudes() {
+    return Future.delayed(Duration(milliseconds: 500)).then((value) => 94);
   }
 }

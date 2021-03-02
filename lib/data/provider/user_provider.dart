@@ -5,7 +5,7 @@ import 'package:sqflite/sqflite.dart';
 class UserProvider {
   final DbHelper helper = DbHelper();
 
-  Future save(UserModel usuario) async {
+  Future<UserModel> save(UserModel usuario) async {
     Database db = await helper.openDb();
     await db.execute(
         'INSERT INTO usuario VALUES (${usuario.idUser}, ${usuario.nameUser}, ${usuario.bornDate}, ${usuario.sex}, ${usuario.weight}, ${usuario.height})');
@@ -35,7 +35,7 @@ class UserProvider {
       return usuario[0];
   }
 
-  Future deleteUserById(int id) async {
+  Future<UserModel> deleteUserById(int id) async {
     Database db = await helper.openDb();
     await db.rawDelete('DELETE FROM usuario WHERE usuario.IdUser = ${id}');
     db.close();
@@ -47,14 +47,25 @@ class UserProvider {
   //   db.close();
   // }
 
-  Future updateUserById(int id, UserModel novoUsuario) async {
+  Future<UserModel> updateUserById(int id, UserModel novoUsuario) async {
     Database db = await helper.openDb();
     await db.rawUpdate(
         'UPDATE usuario SET IdUser = ${novoUsuario.idUser}, NameUser = ${novoUsuario.nameUser}, BornDate = ${novoUsuario.bornDate}, Sex = ${novoUsuario.sex}, Weight = ${novoUsuario.weight}, Height = ${novoUsuario.height} WHERE usuario.IdUser = ${id}');
     db.close();
   }
 
-  // Future<int> countUsers(){
-
-  // }
+  Future<UserModel> getUser() async {
+    UserModel userModel =
+        await Future.delayed(Duration(milliseconds: 500)).then(
+      (value) => UserModel(
+        bornDate: '13/03/2003',
+        height: 1.74,
+        nameUser: 'Vinícius de Carvalho',
+        sex: 'M',
+        weight: 50.0,
+        age: 16,
+      ),
+    );
+    return userModel;
+  }
 }

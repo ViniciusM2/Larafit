@@ -1,3 +1,4 @@
+import 'package:larafit/data/model/user_model.dart';
 import 'package:larafit/data/provider/atitude_provider.dart';
 import 'package:larafit/data/provider/goal_provider.dart';
 import 'package:larafit/data/provider/healthy_habit_provider.dart';
@@ -21,4 +22,16 @@ class DashboardRepository {
               atitudeProvider != null &&
               healthyHabitProvider != null,
         );
+
+  Future<UserModel> getUser() async {
+    return await userProvider.getUser();
+  }
+
+  Future<int> countSuccessfulGoals() async {
+    return await goalProvider.countSuccessfulGoals();
+  }
+
+  Future<int> countAtitudes() {
+    return atitudeProvider.countAtitudes();
+  }
 }

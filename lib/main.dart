@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:larafit/bindings/dashboard_bindings.dart';
 import 'package:larafit/data/util/db_helper.dart';
+import 'package:larafit/routes/app_pages.dart';
+import 'package:larafit/routes/app_routes.dart';
 import 'package:larafit/ui/user_dashboard/user_dashboard.dart';
 
 void main() {
@@ -13,10 +17,13 @@ class MyApp extends StatelessWidget {
     DbHelper dbHelper = DbHelper();
     dbHelper.openDb();
     return GetMaterialApp(
-        debugShowCheckedModeBanner: false,
-        title: 'Flutter Demo',
-        theme: buildTheme(),
-        home: UserDashboardPage());
+      debugShowCheckedModeBanner: false,
+      title: 'Flutter Demo',
+      theme: buildTheme(),
+      initialRoute: Routes.DASHBOARD,
+      initialBinding: DashboardBinding(),
+      getPages: AppPages.routes,
+    );
   }
 }
 
@@ -38,23 +45,33 @@ ThemeData buildTheme() {
       brightness: Brightness.light,
     ),
     textTheme: TextTheme(
-      headline1: TextStyle(fontWeight: FontWeight.w300, fontSize: 96),
-      headline2: TextStyle(fontWeight: FontWeight.w300, fontSize: 60),
-      headline3: TextStyle(fontWeight: FontWeight.w400, fontSize: 48),
-      headline4: TextStyle(fontWeight: FontWeight.w400, fontSize: 34),
-      headline5: TextStyle(fontWeight: FontWeight.w400, fontSize: 24),
-      headline6: TextStyle(fontWeight: FontWeight.w500, fontSize: 20),
-      subtitle1: TextStyle(fontWeight: FontWeight.w400, fontSize: 16),
-      subtitle2: TextStyle(fontWeight: FontWeight.w500, fontSize: 14),
-      bodyText1: TextStyle(fontWeight: FontWeight.w400, fontSize: 16),
-      bodyText2: TextStyle(fontWeight: FontWeight.w400, fontSize: 14),
-      button: TextStyle(
+      headline1:
+          GoogleFonts.openSans(fontWeight: FontWeight.w300, fontSize: 96),
+      headline2:
+          GoogleFonts.openSans(fontWeight: FontWeight.w300, fontSize: 60),
+      headline3:
+          GoogleFonts.openSans(fontWeight: FontWeight.w400, fontSize: 48),
+      headline4:
+          GoogleFonts.openSans(fontWeight: FontWeight.w400, fontSize: 34),
+      headline5:
+          GoogleFonts.openSans(fontWeight: FontWeight.w400, fontSize: 24),
+      headline6:
+          GoogleFonts.openSans(fontSize: 18, fontWeight: FontWeight.w500),
+      subtitle1:
+          GoogleFonts.openSans(fontWeight: FontWeight.w400, fontSize: 16),
+      subtitle2:
+          GoogleFonts.openSans(fontWeight: FontWeight.w500, fontSize: 14),
+      bodyText1:
+          GoogleFonts.openSans(fontWeight: FontWeight.w400, fontSize: 16),
+      bodyText2:
+          GoogleFonts.openSans(fontWeight: FontWeight.w400, fontSize: 14),
+      button: GoogleFonts.openSans(
           fontWeight: FontWeight.w500,
           fontSize: 14,
           color: Colors.black,
           letterSpacing: 2),
-      caption: TextStyle(fontWeight: FontWeight.w400, fontSize: 12),
-      overline: TextStyle(fontWeight: FontWeight.w400, fontSize: 10),
+      caption: GoogleFonts.openSans(fontWeight: FontWeight.w400, fontSize: 12),
+      overline: GoogleFonts.openSans(fontWeight: FontWeight.w400, fontSize: 10),
     ),
   ).copyWith(
     inputDecorationTheme: InputDecorationTheme(
@@ -73,6 +90,7 @@ ThemeData buildTheme() {
       ),
     ),
     appBarTheme: AppBarTheme(
+      iconTheme: IconThemeData(color: Colors.white),
       elevation: 5,
       centerTitle: true,
       // brightness: Brightness.dark,

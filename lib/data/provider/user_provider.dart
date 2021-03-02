@@ -5,7 +5,7 @@ import 'package:sqflite/sqflite.dart';
 class UserProvider {
   final DbHelper helper = DbHelper();
 
-  Future salvar(UserModel usuario) async {
+  Future<UserModel> save(UserModel usuario) async {
     Database db = await helper.openDb();
     await db.execute(
         """INSERT INTO usuario("nome", "datanasc", "sexo", "peso", "altura") VALUES ("${usuario.nameUser}", 
@@ -16,7 +16,7 @@ class UserProvider {
     db.close();
   }
 
-  Future<List<UserModel>> lerTodos() async {
+  Future<List<UserModel>> getAllUsers() async {
     Database db = await helper.openDb();
     List<Map<String, dynamic>> usuariosMap =
         await db.rawQuery('select * from usuario');
@@ -26,7 +26,7 @@ class UserProvider {
     return usuariosList;
   }
 
-  Future<UserModel> lerPeloId(int id) async {
+  Future<UserModel> getUserById(int id) async {
     Database db = await helper.openDb();
     List<Map<String, dynamic>> usuarioMap =
         await db.rawQuery('select * from usuario where usuario.IdUser = ${id}');
@@ -39,19 +39,19 @@ class UserProvider {
       return usuario[0];
   }
 
-  Future deletarPeloId(int id) async {
+  Future<UserModel> deleteUserById(int id) async {
     Database db = await helper.openDb();
     await db.rawDelete('DELETE FROM usuario WHERE usuario.IdUser = ${id}');
     db.close();
   }
 
-  Future deletarTodos() async {
-    Database db = await helper.openDb();
-    await db.rawDelete('DELETE FROM usuario');
-    db.close();
-  }
+  // Future deletarTodos() async {
+  //   Database db = await helper.openDb();
+  //   await db.rawDelete('DELETE FROM usuario');
+  //   db.close();
+  // }
 
-  Future alterarPeloId(int id, UserModel novoUsuario) async {
+  Future<UserModel> updateUserById(int id, UserModel novoUsuario) async {
     Database db = await helper.openDb();
     await db.rawUpdate("""
         UPDATE usuario SET nome = "${novoUsuario.nameUser}", 
@@ -60,5 +60,20 @@ class UserProvider {
         peso = "${novoUsuario.weight}", 
         altura = "${novoUsuario.height}" WHERE usuario.IdUser = ${id}""");
     db.close();
+  }
+
+  Future<UserModel> getUser() async {
+    UserModel userModel =
+        await Future.delayed(Duration(milliseconds: 500)).then(
+      (value) => UserModel(
+        bornDate: '13/03/2003',
+        height: 1.74,
+        nameUser: 'Vinícius de Carvalho',
+        sex: 'M',
+        weight: 50.0,
+        age: 16,
+      ),
+    );
+    return userModel;
   }
 }

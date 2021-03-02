@@ -1,18 +1,18 @@
-import 'package:larafit/data/model/user_model.dart';
+import 'package:larafit/data/model/goal_model.dart';
 import 'package:larafit/data/util/db_helper.dart';
 import 'package:sqflite/sqflite.dart';
 
 class UserProvider {
   final DbHelper helper = DbHelper();
 
-  Future salvar(UserModel usuario) async {
+  Future salvar(GoalModel usuario) async {
     Database db = await helper.openDb();
     await db.execute(
-        """INSERT INTO usuario("nome", "datanasc", "sexo", "peso", "altura") VALUES ("${usuario.nameUser}", 
-        "${usuario.bornDate}", 
-        "${usuario.sex}", 
-        "${usuario.weight}", 
-        "${usuario.height}")""");
+        """INSERT INTO usuario() VALUES (${usuario.nameUser}, 
+        ${usuario.bornDate}, 
+        ${usuario.sex}, 
+        ${usuario.weight}, 
+        ${usuario.height})""");
     db.close();
   }
 
@@ -54,11 +54,11 @@ class UserProvider {
   Future alterarPeloId(int id, UserModel novoUsuario) async {
     Database db = await helper.openDb();
     await db.rawUpdate("""
-        UPDATE usuario SET nome = "${novoUsuario.nameUser}", 
-        datanasc = "${novoUsuario.bornDate}",
-        sexo = "${novoUsuario.sex}", 
-        peso = "${novoUsuario.weight}", 
-        altura = "${novoUsuario.height}" WHERE usuario.IdUser = ${id}""");
+        UPDATE usuario SET NameUser = ${novoUsuario.nameUser}, 
+        BornDate = ${novoUsuario.bornDate},
+        Sex = ${novoUsuario.sex}, 
+        Weight = ${novoUsuario.weight}, 
+        Height = ${novoUsuario.height} WHERE usuario.IdUser = ${id}""");
     db.close();
   }
 }

@@ -2,89 +2,101 @@ import 'package:larafit/data/model/goal_model.dart';
 import 'package:larafit/data/util/db_helper.dart';
 import 'package:sqflite/sqflite.dart';
 
-// class UserProvider {
-//   final DbHelper helper = DbHelper();
-
-//   Future salvar(GoalModel meta) async {
-//     Database db = await helper.openDb();
-//     await db.execute(
-//         """INSERT INTO usuario() VALUES (${meta.}, 
-//         ${usuario.bornDate}, 
-//         ${usuario.sex}, 
-//         ${usuario.weight}, 
-//         ${usuario.height})""");
-//     db.close();
-//   }
-  
-//   Future<List<UserModel>> lerTodos() async {
-//     Database db = await helper.openDb();
-//     List<Map<String, dynamic>> usuariosMap =
-//         await db.rawQuery('select * from usuario');
-//     List<UserModel> usuariosList =
-//         usuariosMap.map((map) => UserModel.fromJson(map)).toList();
-//     db.close();
-//     return usuariosList;
-//   }
-
-//   Future<UserModel> lerPeloId(int id) async {
-//     Database db = await helper.openDb();
-//     List<Map<String, dynamic>> usuarioMap =
-//         await db.rawQuery('select * from usuario where usuario.IdUser = ${id}');
-//     List<UserModel> usuario =
-//         usuarioMap.map((map) => UserModel.fromJson(map)).toList();
-//     db.close();
-//     if (usuario.length == 0)
-//       return null;
-//     else
-//       return usuario[0];
-//   }
-
-//   Future deletarPeloId(int id) async {
-//     Database db = await helper.openDb();
-//     await db.rawDelete('DELETE FROM usuario WHERE usuario.IdUser = ${id}');
-//     db.close();
-//   }
-
-//   Future deletarTodos() async {
-//     Database db = await helper.openDb();
-//     await db.rawDelete('DELETE FROM usuario');
-//     db.close();
-//   }
-
-//   Future alterarPeloId(int id, UserModel novoUsuario) async {
-//     Database db = await helper.openDb();
-//     await db.rawUpdate("""
-//         UPDATE usuario SET NameUser = ${novoUsuario.nameUser}, 
-//         BornDate = ${novoUsuario.bornDate},
-//         Sex = ${novoUsuario.sex}, 
-//         Weight = ${novoUsuario.weight}, 
-//         Height = ${novoUsuario.height} WHERE usuario.IdUser = ${id}""");
-//     db.close();
-//   }
-// }
 
 class GoalProvider {
+  final DbHelper helper = DbHelper();
+
+  Future<void> addGoal(GoalModel goal) async {
+    Database db = await helper.openDb();
+    try{
+    await db.execute(
+      """INSERT INTO meta(idHabito, startDate, finalDate, state, url) VALUES 
+      (${goal.idHabito},  
+      ${goal.startDate}, 
+      ${goal.startDate},
+      0, ${goal.url})""");
+      db.close();}
+    catch(_){
+      print('ERRO AO CADASTRAR META');
+    }
+
+  }
   Future<List<GoalModel>> getAllGoals() async {
-    try {} catch (_) {}
+    try {
+    Database db = await helper.openDb();
+    List<Map<String, dynamic>> goalsMap =
+        await db.rawQuery('select * from meta');
+    List<GoalModel> goalsList =
+        goalsMap.map((map) => GoalModel.fromJson(map)).toList();
+    db.close();
+    return goalsList;
+    } catch (_) {
+      print('ERRO AO PEDIR TODAS AS METAS.');
+      return null;}
   }
 
-  Future<GoalModel> getGoalById() async{
-    try {} catch (_) {}
+  Future<GoalModel> getGoalById(int id) async{
+    try {
+    Database db = await helper.openDb();
+    List<Map<String, dynamic>> goalsMap =
+        await db.rawQuery('SELECT * FROM meta WHERE meta.idMeta = ${id}');
+    List<GoalModel> goalsList =
+        goalsMap.map((map) => GoalModel.fromJson(map)).toList();
+    db.close();
+    if (goalsList.length == 0)
+      return null;
+    else{
+      GoalModel meta = goalsList[0];
+      return meta;
+      }
+      } catch (_) {print('ERRO AO PEDIR UMA META');
+      return null;}
   }
 
-  Future<GoalModel> deleteGoalById() {
-    try {} catch (_) {}
+  Future<void> deleteGoalById(int id) async  {
+    try {
+      Database db = await helper.openDb();
+      await db.rawDelete('DELETE FROM meta WHERE meta.idMeta = ${id}');
+      db.close();
+    } catch (_) {
+      print('ERRO AO DELETAR UMA META');}
   }
 
-  Future<GoalModel> updateGoalById() {
-    try {} catch (_) {}
+
+  Future<void> updateGoalById(GoalModel meta, int id) async{
+    try {
+      Database db = await helper.openDb();
+        await db.rawUpdate("""
+        UPDATE meta SET idHabito = "${meta.idHabito}", 
+        startDate = "${meta.startDate}",
+        finalDate = "${meta.finalDate}",
+        state = "${meta.state}",
+        url = "${meta.url}" WHERE meta.idMeta = "${id}"
+        """);
+        db.close();
+        } catch (_) {print('NÃO FOI POSSIVEL EDITAR A META.');}
   }
 
-  Future<int> countGoals() {
-    return Future.delayed(Duration(milliseconds: 500)).then((value) => 9);
+  Future<int> countGoals() async{
+   try {
+      Database db = await helper.openDb();
+      int count = Sqflite.firstIntValue(await db.rawQuery('SELECT COUNT(*) FROM meta'));
+      return count;
+
+    } catch (_) {print('ERRO AO PEDIR A CONTAGEM DE METAS');
+    return null;
+    }
   }
 
-  Future<int> countSuccessfulGoals() {
-    return Future.delayed(Duration(milliseconds: 500)).then((value) => 8);
+  Future<int> countSuccessfulGoals() async{
+    try{
+    Database db = await helper.openDb();
+    int count = Sqflite.firstIntValue(await db.rawQuery('SELECT COUNT(*) FROM meta WHERE meta.state = 1'));
+    return count;
+    }
+    catch(_){
+      print('ERRO AO PEDIR AS METAS CONCLUIDAS');
+      return null;}
+
   }
 }

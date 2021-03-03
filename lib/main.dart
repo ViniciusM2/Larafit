@@ -8,10 +8,10 @@ import 'package:larafit/routes/app_routes.dart';
 import 'package:larafit/ui/user_dashboard/user_dashboard.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(LaraFit());
 }
 
-class MyApp extends StatelessWidget {
+class LaraFit extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     DbHelper dbHelper = DbHelper();

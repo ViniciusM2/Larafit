@@ -17,7 +17,8 @@ class DbHelper {
             datanasc TEXT,
             sexo TEXT,
             peso REAL,
-            altura REAL
+            altura REAL,
+            url TEXT
           )
         """);
         await database.execute("""
@@ -26,7 +27,8 @@ class DbHelper {
               idUser INTEGER,
               nomeHabito TEXT,
               descricao TEXT,
-              FOREIGN KEY(idUser) REFERENCES usuario(idUser)
+              FOREIGN KEY(idUser) REFERENCES usuario(idUser),
+              url TEXT
             )
             """);
         // await database.execute(
@@ -36,11 +38,11 @@ class DbHelper {
             CREATE TABLE meta(
               idMeta INTEGER PRIMARY KEY,
               idHabito INTEGER,
-              activeTimeGoal TEXT,
-              distanceGoal TEXT,
               startDate TEXT, 
               finalDate TEXT, 
-              FOREIGN KEY(idHabito) REFERENCES habitoSaudavel(idHabito) 
+              FOREIGN KEY(idHabito) REFERENCES habitoSaudavel(idHabito), 
+              url TEXT,
+              state INTEGER
 	          )
             """);
         await database.execute("""
@@ -49,8 +51,8 @@ class DbHelper {
               idMeta INTEGER,
               nomeAtitude TEXT,
               atitudeDuration INTEGER, 
-              startDate TEXT,
-            FOREIGN KEY(idMeta) REFERENCES meta(idMeta)
+            FOREIGN KEY(idMeta) REFERENCES meta(idMeta),
+            url TEXT
             )
             """);
         // await database.execute(

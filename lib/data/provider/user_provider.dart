@@ -8,11 +8,12 @@ class UserProvider {
   Future<UserModel> save(UserModel usuario) async {
     Database db = await helper.openDb();
     await db.execute(
-        """INSERT INTO usuario("nome", "datanasc", "sexo", "peso", "altura") VALUES ("${usuario.nameUser}", 
+        """INSERT INTO usuario(nome, datanasc, sexo, peso, altura, url) VALUES ("${usuario.nameUser}", 
         "${usuario.bornDate}", 
         "${usuario.sex}", 
         "${usuario.weight}", 
-        "${usuario.height}")""");
+        "${usuario.height}",
+        "${usuario.url}")""");
     db.close();
   }
 
@@ -39,7 +40,7 @@ class UserProvider {
       return usuario[0];
   }
 
-  Future<UserModel> deleteUserById(int id) async {
+  Future<void> deleteUserById(int id) async {
     Database db = await helper.openDb();
     await db.rawDelete('DELETE FROM usuario WHERE usuario.IdUser = ${id}');
     db.close();
@@ -51,14 +52,15 @@ class UserProvider {
   //   db.close();
   // }
 
-  Future<UserModel> updateUserById(int id, UserModel novoUsuario) async {
+  Future<void> updateUserById(int id, UserModel novoUsuario) async {
     Database db = await helper.openDb();
     await db.rawUpdate("""
         UPDATE usuario SET nome = "${novoUsuario.nameUser}", 
         datanasc = "${novoUsuario.bornDate}",
         sexo = "${novoUsuario.sex}", 
         peso = "${novoUsuario.weight}", 
-        altura = "${novoUsuario.height}" WHERE usuario.IdUser = ${id}""");
+        altura = "${novoUsuario.height},
+        url = "${novoUsuario.url}" WHERE usuario.IdUser = ${id}""");
     db.close();
   }
 
@@ -71,7 +73,7 @@ class UserProvider {
         nameUser: 'Vinícius de Carvalho',
         sex: 'M',
         weight: 50.0,
-        age: 16,
+        age:16,
       ),
     );
     return userModel;

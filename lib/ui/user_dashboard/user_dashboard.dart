@@ -3,13 +3,19 @@ import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:larafit/controller/dashboard_controller.dart';
-import 'package:larafit/ui/user_dashboard/cards/dashboard_card.dart';
+import 'package:larafit/ui/user_dashboard/widgets/dashboard_card.dart';
+import 'package:larafit/ui/widgets/custom_drawer.dart';
 
 class UserDashboardPage extends GetView<DashboardController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: Drawer(),
+      drawer: Obx(
+        () => CustomDrawer(
+          nameOfUser: controller.nameOfUser,
+          currentRoute: Get.currentRoute,
+        ),
+      ),
       appBar: AppBar(
         centerTitle: true,
         title: Text(

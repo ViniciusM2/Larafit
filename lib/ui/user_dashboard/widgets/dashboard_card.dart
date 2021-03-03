@@ -54,7 +54,6 @@ class DashboardCard extends StatelessWidget {
               ),
             ),
           Expanded(
-            flex: 1,
             child: Padding(
               padding: const EdgeInsets.only(left: 10),
               child: Column(

@@ -1,5 +1,8 @@
 import 'package:get/route_manager.dart';
 import 'package:larafit/bindings/dashboard_bindings.dart';
+import 'package:larafit/ui/atitudes/atitudes_page.dart';
+import 'package:larafit/ui/goals_page/goals_page.dart';
+import 'package:larafit/ui/healthy_habits_page/healthy_habits_page.dart';
 import 'package:larafit/ui/user_dashboard/user_dashboard.dart';
 
 import 'app_routes.dart';
@@ -10,6 +13,18 @@ class AppPages {
       name: Routes.DASHBOARD,
       page: () => UserDashboardPage(),
       binding: DashboardBinding(),
-    )
+    ),
+    GetPage(
+      name: Routes.HEALTHY_HABITS,
+      page: () => HealthyHabitsPage(),
+    ),
+    GetPage(
+      name: Routes.GOALS,
+      page: () => GoalsPage(),
+    ),
+    GetPage(
+      name: Routes.ATITUDES,
+      page: () => AtitudesPage(),
+    ),
   ];
 }

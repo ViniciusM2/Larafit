@@ -56,11 +56,11 @@ ThemeData buildTheme() {
       headline5:
           GoogleFonts.openSans(fontWeight: FontWeight.w400, fontSize: 24),
       headline6:
-          GoogleFonts.openSans(fontSize: 18, fontWeight: FontWeight.w500),
+          GoogleFonts.openSans(fontSize: 18, fontWeight: FontWeight.w600),
       subtitle1:
           GoogleFonts.openSans(fontWeight: FontWeight.w400, fontSize: 16),
       subtitle2:
-          GoogleFonts.openSans(fontWeight: FontWeight.w500, fontSize: 14),
+          GoogleFonts.openSans(fontWeight: FontWeight.w600, fontSize: 14),
       bodyText1:
           GoogleFonts.openSans(fontWeight: FontWeight.w400, fontSize: 16),
       bodyText2:
@@ -79,10 +79,10 @@ ThemeData buildTheme() {
       border: OutlineInputBorder(),
       //alignLabelWithHint: true,
     ),
-    buttonColor: Colors.amber[500],
+    buttonColor: Color(0xffec6e8b),
     buttonTheme: ButtonThemeData(
       textTheme: ButtonTextTheme.primary,
-      buttonColor: Colors.amber,
+      buttonColor: Color(0xffec6e8b),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.all(
           Radius.circular(5),

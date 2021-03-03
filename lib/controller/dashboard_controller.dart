@@ -11,6 +11,10 @@ class DashboardController extends GetxController {
     return await repository.getUser();
   }
 
+  final _nameOfUser = ''.obs;
+  get nameOfUser => this._nameOfUser.value;
+  set nameOfUser(value) => this._nameOfUser.value = value;
+
   final _weight = ''.obs;
   String get weight => this._weight.value;
   set weight(value) => this._weight.value = value;
@@ -43,6 +47,7 @@ class DashboardController extends GetxController {
   onInit() async {
     // repository.getUser().then((user) => this.weight = '${user.weight}');
     var user = await repository.getUser();
+    nameOfUser = '${user.nameUser}';
     weight = '${user.weight}';
     age = '${user.age}';
     sex = '${user.sex}';

@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 import 'package:larafit/data/model/user_model.dart';
+import 'package:larafit/data/provider/healthy_habit_provider.dart';
 import 'package:larafit/data/repository/dashboard_repository.dart';
 import 'package:meta/meta.dart';
 
@@ -59,5 +60,10 @@ class DashboardController extends GetxController {
     numberOfAtitudes = '$__numberOfAtitudes';
 
     super.onInit();
+  }
+
+  void teste() async {
+    var teste = await HealthyHabitProvider().getAllHealthyHabits();
+    print(teste);
   }
 }

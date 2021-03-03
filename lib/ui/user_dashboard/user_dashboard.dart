@@ -98,7 +98,7 @@ class UserDashboardPage extends GetView<DashboardController> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: controller.teste,
         child: Icon(Icons.fitness_center),
       ),
     );

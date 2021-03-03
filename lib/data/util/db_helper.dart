@@ -2,8 +2,18 @@ import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 
 class DbHelper {
-  final int version = 1;
+  final int version = 3;
+
   Database db;
+
+  static final DbHelper _dbHelper = DbHelper._internal();
+
+  DbHelper._internal();
+
+  factory DbHelper() {
+    return _dbHelper;
+  }
+
   Future<Database> openDb() async {
     if (db == null) {
       db = await openDatabase(join(await getDatabasesPath(), 'larafit.db'),
@@ -27,8 +37,8 @@ class DbHelper {
               idUser INTEGER,
               nomeHabito TEXT,
               descricao TEXT,
-              FOREIGN KEY(idUser) REFERENCES usuario(idUser),
-              url TEXT
+              url TEXT,
+              FOREIGN KEY(idUser) REFERENCES usuario(idUser)
             )
             """);
         // await database.execute(
@@ -40,9 +50,9 @@ class DbHelper {
               idHabito INTEGER,
               startDate TEXT, 
               finalDate TEXT, 
-              FOREIGN KEY(idHabito) REFERENCES habitoSaudavel(idHabito), 
               url TEXT,
-              state INTEGER
+              state INTEGER,
+              FOREIGN KEY(idHabito) REFERENCES habitoSaudavel(idHabito)
 	          )
             """);
         await database.execute("""
@@ -51,8 +61,8 @@ class DbHelper {
               idMeta INTEGER,
               nomeAtitude TEXT,
               atitudeDuration INTEGER, 
-            FOREIGN KEY(idMeta) REFERENCES meta(idMeta),
-            url TEXT
+            url TEXT,
+            FOREIGN KEY(idMeta) REFERENCES meta(idMeta)
             )
             """);
         // await database.execute(

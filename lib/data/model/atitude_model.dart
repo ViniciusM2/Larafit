@@ -2,16 +2,18 @@ class AtitudeModel {
   int idAtitude;
   String atitudeName;
   int atitudeDuration;
-  int idHabito;
+  int idMeta;
+  String url;
 
   AtitudeModel(
-      {this.idAtitude, this.atitudeName, this.atitudeDuration, this.idHabito});
+      {this.idAtitude, this.atitudeName, this.atitudeDuration, this.idMeta, this.url});
 
   AtitudeModel.fromJson(Map<String, dynamic> json) {
     idAtitude = json['idAtitude'];
     atitudeName = json['atitudeName'];
     atitudeDuration = json['atitudeDuration'];
-    idHabito = json['idHabito'];
+    idMeta = json['idMeta'];
+    url = json['Url'];
   }
 
   Map<String, dynamic> toJson() {
@@ -19,7 +21,8 @@ class AtitudeModel {
     data['idAtitude'] = this.idAtitude;
     data['atitudeName'] = this.atitudeName;
     data['atitudeDuration'] = this.atitudeDuration;
-    data['idHabito'] = this.idHabito;
+    data['idMeta'] = this.idMeta;
+    data['Url'] = this.url;
     return data;
   }
 }

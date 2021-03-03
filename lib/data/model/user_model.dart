@@ -6,6 +6,7 @@ class UserModel {
   double weight;
   double height;
   int age;
+  String url;
 
   UserModel({
     this.idUser,
@@ -15,6 +16,7 @@ class UserModel {
     this.weight,
     this.height,
     this.age,
+    this.url
   });
 
   UserModel.fromJson(Map<String, dynamic> json) {
@@ -24,6 +26,7 @@ class UserModel {
     sex = json['Sex'];
     weight = json['Weight'];
     height = json['Height'];
+    url = json['Url'];
   }
 
   Map<String, dynamic> toJson() {
@@ -34,6 +37,7 @@ class UserModel {
     data['Sex'] = this.sex;
     data['Weight'] = this.weight;
     data['Height'] = this.height;
+    data['Url'] = this.url;
     return data;
   }
 }

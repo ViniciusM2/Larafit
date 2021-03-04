@@ -1,5 +1,6 @@
 import 'package:get/route_manager.dart';
 import 'package:larafit/bindings/dashboard_bindings.dart';
+import 'package:larafit/bindings/goals_binding.dart';
 import 'package:larafit/bindings/habits_binding.dart';
 import 'package:larafit/ui/atitudes/atitudes_page.dart';
 import 'package:larafit/ui/goals_page/goals_page.dart';
@@ -29,6 +30,7 @@ class AppPages {
     GetPage(
       name: Routes.GOALS,
       page: () => GoalsPage(),
+      binding: GoalsBiding()
     ),
     GetPage(
       name: Routes.ATITUDES,

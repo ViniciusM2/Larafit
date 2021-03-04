@@ -21,8 +21,9 @@ class HealthyHabitProvider {
               "${habito.descricaoTEXT}",
               "${habito.url}" 
             )
-            """);
-      await db.execute("""INSERT INTO habitoSaudavel
+            """,);
+      await db.execute("""
+      INSERT INTO habitoSaudavel
             (
               idUser,
               nomeHabito,
@@ -50,7 +51,6 @@ class HealthyHabitProvider {
       // print('habitosMap: $habitosMap');
       List<HealthyHabitModel> habitosList =
           habitosMap.map((map) => HealthyHabitModel.fromJson(map)).toList();
-
       return habitosList;
     } catch (e) {
       print('ERRO AO PEDIR TODOS OS HABITOS: $e');
@@ -89,16 +89,28 @@ class HealthyHabitProvider {
   Future<void> updateHealthyHabitById(
       HealthyHabitModel habitoNovo, int id) async {
     try {
+      print(habitoNovo);
       await db.rawUpdate("""
         UPDATE habitoSaudavel SET nomeHabito = "${habitoNovo.nomehabito}", 
         idUser = "${habitoNovo.autorhabitoINT}",
         descricao = "${habitoNovo.descricaoTEXT}",
-        url = "${habitoNovo.url}" WHERE habitoSaudavel.idHabito = ${id}
+        url = "${habitoNovo.url}" WHERE habitoSaudavel.idHabito = "${id}"
         """);
     } catch (_) {
       print('NÃO FOI POSSIVEL EDITAR O HABITO.');
     }
   }
+  // try {
+  //     print(habitoNovo);
+  //     await db.rawUpdate("""
+  //       UPDATE habitoSaudavel SET nomeHabito = "${habitoNovo.nomehabito}", 
+  //       idUser = "1",
+  //       descricao = "${habitoNovo.descricaoTEXT}",
+  //       url = "${habitoNovo.url}",  idHabito = "${id}" WHERE habitoSaudavel.idHabito = "${id}"
+  //       """);
+  //   } catch (_) {
+  //     print('NÃO FOI POSSIVEL EDITAR O HABITO.');
+  //   }
 
   Future<int> countHealthyHabits() async {
     try {

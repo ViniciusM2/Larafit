@@ -58,6 +58,8 @@ class HealthyHabitPageController extends GetxController {
     repository
         .updateHealthyHabitById(
             HealthyHabitModel(
+              idHabito: id,
+              autorhabitoINT: null,
               descricaoTEXT: descriptionController.text,
               nomehabito: nameOfHabitController.text,
               url: urlController.text,

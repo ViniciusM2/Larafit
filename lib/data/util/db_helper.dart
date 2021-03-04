@@ -47,12 +47,11 @@ class DbHelper {
         await database.execute("""
             CREATE TABLE meta(
               idMeta INTEGER PRIMARY KEY,
-              idHabito INTEGER,
+              description TEXT,
               startDate TEXT, 
               finalDate TEXT, 
               url TEXT,
-              state INTEGER,
-              FOREIGN KEY(idHabito) REFERENCES habitoSaudavel(idHabito)
+              state INTEGER
 	          )
             """);
         await database.execute("""

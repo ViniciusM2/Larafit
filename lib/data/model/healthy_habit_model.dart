@@ -13,11 +13,17 @@ class HealthyHabitModel {
       this.url});
 
   HealthyHabitModel.fromJson(Map<String, dynamic> json) {
+    try{
     idHabito = json['idHabito'];
     nomehabito = json['nomeHabito'];
     descricaoTEXT = json['descricao'];
     autorhabitoINT = json['idUser'];
     url = json['url'];
+    }
+    catch(e){
+      print('ERRO HABITO FROM JSON $e');
+    }
+    
   }
 
   Map<String, dynamic> toJson() {

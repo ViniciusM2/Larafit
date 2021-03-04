@@ -48,9 +48,7 @@ class AtitudesPage extends GetView<DashboardController> {
           ),
         ),
         floatingActionButton: FloatingActionButton(
-          onPressed: () => showDialog(
-            context: context,
-            child: AlertDialog(
+          onPressed: () => showDialog(context: context,builder: (context) => AlertDialog(
               content: AtitudeForm(),
               actions: [
                 FlatButton(
@@ -62,6 +60,7 @@ class AtitudesPage extends GetView<DashboardController> {
                   icon: Icon(Icons.done),
                   label: Text('Cadastrar'),
                 ),
+           
               ],
             ),
           ),

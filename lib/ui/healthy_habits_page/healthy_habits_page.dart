@@ -48,9 +48,7 @@ class HealthyHabitsPage extends GetView<HealthyHabitPageController> {
                           model.descricaoTEXT;
                       controller.nameOfHabitController.text = model.nomehabito;
                       controller.urlController.text = model.url;
-                      showDialog(
-                        context: context,
-                        child: AlertDialog(
+                      showDialog( context: context, builder: (context) => AlertDialog(
                           content: Container(
                             width: Get.width * 0.8,
                             child: Column(
@@ -90,7 +88,6 @@ class HealthyHabitsPage extends GetView<HealthyHabitPageController> {
                               color: Get.theme.primaryColor,
                               onPressed: () =>
                                   controller.updateHealthyHabitById(
-                                model,
                                 model.idHabito,
                               ),
                               label: Text(
@@ -104,6 +101,7 @@ class HealthyHabitsPage extends GetView<HealthyHabitPageController> {
                             ),
                           ],
                         ),
+
                       );
                     },
                   ),
@@ -115,9 +113,7 @@ class HealthyHabitsPage extends GetView<HealthyHabitPageController> {
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           controller.clearTextEditingControllers();
-          showDialog(
-            context: context,
-            child: AlertDialog(
+          showDialog( context: context, builder: (context) => AlertDialog(
               content: Container(
                 width: Get.width * 0.8,
                 child: Column(
@@ -157,7 +153,8 @@ class HealthyHabitsPage extends GetView<HealthyHabitPageController> {
                   label: Text('Cadastrar'),
                 ),
               ],
-            ),
+            )
+ ,
           );
         },
         child: Icon(

@@ -47,9 +47,7 @@ class GoalsPage extends GetView<DashboardController> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () => showDialog(
-          context: context,
-          child: AlertDialog(
+        onPressed: () => showDialog(context: context, builder: (context) => AlertDialog(
             content: GoalForm(),
             actions: [
               FlatButton(
